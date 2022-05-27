@@ -1,0 +1,27 @@
+name: Unit Test
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-18.04
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v1
+
+      - name: Install dependencies
+        run: |
+          flutter pub get
+
+      - name: Test
+        run: |
+          flutter test
